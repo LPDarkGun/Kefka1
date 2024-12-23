@@ -31,7 +31,7 @@ const Navigation = () => {
       <motion.header
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        className="fixed w-full top-0 z-50 bg-background/80 backdrop-blur-md"
+        className="fixed w-full top-0 z-50 bg-background  backdrop-blur-md"
       >
         <nav className="container mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/">
@@ -57,7 +57,7 @@ const Navigation = () => {
               >
                 <Link 
                   href={item.href}
-                  className={`text-sm font-medium transition-colors relative ${
+                  className={`text-lg font-medium transition-colors relative ${
                     router.pathname === item.href 
                       ? "text-foreground" 
                       : "text-foreground/60 hover:text-foreground"

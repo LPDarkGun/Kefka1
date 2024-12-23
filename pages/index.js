@@ -13,22 +13,18 @@ export default function Home() {
 
   return (
     <PageTransition>
-      <div
-        ref={containerRef}
-        className="min-h-screen bg-background text-foreground"
-      >
+      <div ref={containerRef} className="min-h-screen bg-black text-white">
         <Navigation />
 
         {/* Hero Section */}
         <section className="h-screen flex items-center justify-center relative overflow-hidden">
-          {/* Background Grid */}
-          <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-20">
+          <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 opacity-10">
             {[...Array(64)].map((_, i) => (
               <motion.div
                 key={i}
-                className="border border-primary/20"
+                className="border border-primary"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ delay: i * 0.01 }}
               />
             ))}
@@ -43,7 +39,7 @@ export default function Home() {
                   initial={{ y: 100 }}
                   animate={{ y: 0 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="text-xl md:text-2xl text-primary/60"
+                  className="text-xl md:text-2xl text-white/60"
                 >
                   Digital Studio
                 </motion.p>
@@ -75,7 +71,7 @@ export default function Home() {
                 {[...Array(20)].map((_, i) => (
                   <motion.div
                     key={i}
-                    className="absolute w-1 h-1 bg-primary/40 rounded-full"
+                    className="absolute w-1 h-1 bg-white/40 rounded-full"
                     style={{
                       left: `${Math.random() * 100}%`,
                       top: `${Math.random() * 100}%`,
@@ -98,22 +94,6 @@ export default function Home() {
           </div>
 
           {/* Scroll Indicator */}
-          <motion.div
-            className="absolute bottom-12 left-1/2 -translate-x-1/2"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <div className="flex flex-col items-center gap-4">
-              <div className="w-6 h-10 border-2 border-primary/20 rounded-full flex items-center justify-center">
-                <motion.div
-                  className="w-1.5 h-1.5 bg-primary/60 rounded-full"
-                  animate={{ y: [-8, 8, -8] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-              </div>
-              <span className="text-sm text-primary/60">Scroll</span>
-            </div>
-          </motion.div>
         </section>
 
         {/* Featured Work Section */}
@@ -124,7 +104,7 @@ export default function Home() {
               {[...Array(64)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="border border-primary/20"
+                  className="border border-white/30"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: i * 0.01 }}
@@ -148,7 +128,7 @@ export default function Home() {
                     whileInView={{ y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-xl text-primary/60 mb-4"
+                    className="text-xl text-white/60 mb-4"
                   >
                     Selected Projects
                   </motion.p>
@@ -199,84 +179,36 @@ export default function Home() {
                   },
                 ].map((project, i) => (
                   <motion.div
-                    key={i}
-                    initial={{ y: 100, opacity: 0 }}
-                    whileInView={{ y: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-100px" }}
-                    transition={{ duration: 0.8 }}
-                    className="group relative"
-                    data-cursor="text"
+                    key={project.title}
+                    initial={{ x: 100, opacity: 0 }}
+                    whileInView={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="relative"
                   >
-                    {/* Project Number */}
-                    <motion.span
-                      className="absolute -left-8 top-0 text-8xl font-bold opacity-10"
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 0.1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      0{i + 1}
-                    </motion.span>
-
                     {/* Project Content */}
-                    <div className="grid grid-cols-12 gap-8 items-center">
+                    <div className="relative grid grid-cols-2 gap-8">
                       {/* Text Content */}
-                      <motion.div
-                        className="col-span-12 md:col-span-5 space-y-6"
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        <div className="space-y-2">
-                          <p className="text-primary/60">
-                            {project.category} • {project.year}
-                          </p>
-                          <h3 className="text-4xl md:text-6xl font-bold">
-                            {project.title}
-                          </h3>
-                        </div>
-
-                        <motion.button
-                          whileHover={{ x: 10 }}
-                          className="flex items-center gap-2 text-primary/60 hover:text-primary transition-colors group"
-                        >
-                          <span>View Project</span>
-                          <span className="group-hover:translate-x-2 transition-transform">
-                            →
-                          </span>
-                        </motion.button>
-                      </motion.div>
+                      <div className="space-y-6">
+                        <p className="text-white/60 mb-2">
+                          {project.category} • {project.year}
+                        </p>
+                        <h2 className="text-4xl md:text-6xl font-bold mb-4">
+                          {project.title}
+                        </h2>
+                      </div>
 
                       {/* Image */}
                       <motion.div
-                        className="col-span-12 md:col-span-7 aspect-[4/3] overflow-hidden"
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4 }}
+                        className="relative aspect-[4/3] rounded-xl overflow-hidden"
+                        initial={{ x: 100, opacity: 0 }}
+                        whileInView={{ x: 0, opacity: 1 }}
+                        transition={{ duration: 0.5, delay: i * 0.1 }}
                       >
-                        <motion.div
-                          className="w-full h-full relative rounded-xl overflow-hidden"
-                          whileHover={{ scale: 1.03 }}
-                          transition={{ duration: 0.6 }}
-                        >
-                          <motion.div
-                            className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
-                            style={{ backgroundColor: project.color }}
-                          />
-                          <img
-                            src={project.image}
-                            alt={project.title}
-                            className="object-cover w-full h-full"
-                          />
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-b from-transparent to-background/20"
-                            initial={{ opacity: 0 }}
-                            whileHover={{ opacity: 1 }}
-                            transition={{ duration: 0.3 }}
-                          />
-                        </motion.div>
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="object-cover w-full h-full"
+                        />
                       </motion.div>
                     </div>
                   </motion.div>
@@ -294,7 +226,7 @@ export default function Home() {
               {[...Array(64)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="border border-primary/20"
+                  className="border border-white/30"
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: i * 0.01 }}
@@ -334,7 +266,7 @@ export default function Home() {
                   initial={{ y: 20, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   viewport={{ once: true }}
-                  className="text-primary/60 text-xl"
+                  className="text-white/60 text-xl"
                 >
                   Got a project in mind?
                 </motion.p>
@@ -376,12 +308,16 @@ export default function Home() {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="group relative px-12 py-6 bg-primary text-primary-foreground rounded-full text-lg font-medium overflow-hidden"
+                    onClick={() => {
+                      window.location.href =
+                        "mailto:erosimcity@gmail.com?subject=Project Inquiry&body=Hi, I'd like to discuss a project with you."
+                    }}
+                    className="group relative px-12 py-6 bg-white text-black rounded-full text-lg font-medium overflow-hidden"
                     data-cursor="text"
                   >
                     {/* Button Background Animation */}
                     <motion.div
-                      className="absolute inset-0 bg-primary/20"
+                      className="absolute inset-0 bg-white/20"
                       animate={{
                         scale: [1, 2],
                         opacity: [0, 1, 0],
@@ -407,26 +343,6 @@ export default function Home() {
                       </motion.span>
                     </span>
                   </motion.button>
-                </motion.div>
-
-                {/* Optional: Social Links */}
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.4 }}
-                  className="flex justify-center gap-8 pt-12"
-                >
-                  {["Twitter", "LinkedIn", "Instagram"].map((social, i) => (
-                    <motion.a
-                      key={social}
-                      href="#"
-                      whileHover={{ y: -5 }}
-                      className="text-primary/60 hover:text-primary transition-colors"
-                    >
-                      {social}
-                    </motion.a>
-                  ))}
                 </motion.div>
               </motion.div>
             </div>

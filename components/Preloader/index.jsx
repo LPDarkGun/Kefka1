@@ -39,7 +39,7 @@ export default function Index() {
             variants={slideUp}
             initial="initial"
             exit="exit"
-            className="introduction-container flex items-center justify-center fixed inset-0 z-[99] bg-[#141516]"
+            className="introduction-container flex items-center justify-center fixed inset-0 z-[99]"
         >
             {dimension.width > 0 && (
                 <>
@@ -47,6 +47,7 @@ export default function Index() {
                         variants={opacity}
                         initial="initial"
                         animate="enter"
+                        exit={{ opacity: 0, transition: { duration: 0.3 } }}
                         className="relative z-10 text-white text-4xl flex items-center"
                     >
                         <span className="dot-indicator"></span>
@@ -57,7 +58,7 @@ export default function Index() {
                             variants={curve}
                             initial="initial"
                             exit="exit"
-                            className="fill-[#2E4057]"
+                            className="fill-[#141516]"
                         ></motion.path>
                     </svg>
                 </>
